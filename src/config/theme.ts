@@ -26,5 +26,27 @@ export default createTheme({
       color: "#373A3C",
     },
     fontFamily: ["'Alegreya Sans'", "sans-serif"].join(","),
+    h1: {
+      fontFamily: headingFonts,
+      fontSize: "2.5rem",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "3rem",
+      },
+    },
+    subtitle1: {
+      fontFamily: headingFonts,
+      fontSize: "1.5rem",
+      lineHeight: 1,
+      fontWeight: 700,
+    },
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          subtitle1: "p",
+        },
+      },
+    },
   },
 });

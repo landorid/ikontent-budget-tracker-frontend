@@ -1,13 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 
 interface WidgetProps {
   title: string;
   amount: number;
   variant: "info" | "error" | "success";
+  isLoading?: boolean;
 }
 
 export default function Widget(props: WidgetProps) {
-  const { variant, title, amount } = props;
+  const { variant, title, amount, isLoading } = props;
   const formattedAmount = amount.toLocaleString("hu-HU");
 
   return (
@@ -25,9 +26,17 @@ export default function Widget(props: WidgetProps) {
         <Typography fontSize={12} color="white" fontWeight={700} lineHeight={1}>
           {title}
         </Typography>
-        <Typography color="white" variant="subtitle1">
-          {formattedAmount} HUF
-        </Typography>
+        {isLoading ? (
+          <Skeleton
+            variant="text"
+            sx={{ fontSize: "1.5rem", lineHeight: 1 }}
+            width={110}
+          />
+        ) : (
+          <Typography color="white" variant="subtitle1">
+            {formattedAmount} HUF
+          </Typography>
+        )}
       </div>
     </Box>
   );

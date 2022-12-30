@@ -19,6 +19,7 @@ export default function TabNavigation() {
           variant={tab === activeTab ? "contained" : "outlined"}
           disableElevation
           onClick={handleOnClick(tab)}
+          sx={{ flex: { xs: 1, md: "auto" } }}
         >
           {tab}
         </Button>

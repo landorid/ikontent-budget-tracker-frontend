@@ -1,18 +1,27 @@
 import { Box, Typography } from "@mui/material";
 import { useGetTransactionsQuery } from "../services/transactions";
 import { useAppSelector } from "../store/store";
-import { selectActiveTab } from "../store/ui.slice";
+import { selectActiveTab, selectSearchText } from "../store/ui.slice";
 import TransactionItem from "./TransactionItem";
 
 export default function TransactionList() {
   const activeTab = useAppSelector(selectActiveTab);
+  const searchText = useAppSelector(selectSearchText);
   const transactions = useGetTransactionsQuery(undefined, {
     selectFromResult: ({ data, ...rest }) => ({
       ...rest,
-      data:
-        activeTab === "ALL"
-          ? data
-          : data?.filter((transaction) => transaction.type === activeTab),
+      data: data
+        ?.filter((transaction) => {
+          if (activeTab === "ALL") return true;
+          return transaction.type === activeTab;
+        })
+        .filter((transaction) => {
+          if (!searchText || searchText === "") return true;
+
+          return transaction.name
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
+        }),
     }),
   });
 

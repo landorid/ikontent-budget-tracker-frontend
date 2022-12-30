@@ -1,15 +1,20 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { transactionsApi } from "../services/transactions";
+import { uiReducer } from "./ui.slice";
+
+const rootReducer = combineReducers({
+  ui: uiReducer,
+  [transactionsApi.reducerPath]: transactionsApi.reducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    [transactionsApi.reducerPath]: transactionsApi.reducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(transactionsApi.middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

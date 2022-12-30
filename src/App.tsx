@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import CashFlowForm from "./components/CashFlowForm";
-import TransactionList from "./components/TransactionList";
+import TransactionView from "./components/TransactionView";
 import Widgets from "./components/Widgets";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
         </Grid>
 
         <Grid item xs={12} sm={7} md={8}>
-          <TransactionList />
+          <TransactionView />
         </Grid>
       </Grid>
     </Container>

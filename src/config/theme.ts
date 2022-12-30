@@ -73,6 +73,11 @@ export default createTheme({
           fontSize: 18,
           paddingLeft: 14,
           paddingRight: 14,
+        },
+        outlined: {
+          color: "#373A3C",
+        },
+        contained: {
           color: "#fff",
         },
       },

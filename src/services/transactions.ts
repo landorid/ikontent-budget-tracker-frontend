@@ -28,17 +28,15 @@ export const transactionsApi = createApi({
       }),
       invalidatesTags: [{ type: "Transactions", id: "LIST" }],
     }),
-    deleteTransaction: build.mutation<{ success: boolean; id: number }, number>(
-      {
-        query(id) {
-          return {
-            url: `transactions/${id}`,
-            method: "DELETE",
-          };
-        },
-        invalidatesTags: (result, error, id) => [{ type: "Transactions", id }],
-      }
-    ),
+    deleteTransaction: build.mutation<{}, string>({
+      query(id) {
+        return {
+          url: `transactions/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: (result, error, id) => [{ type: "Transactions", id }],
+    }),
   }),
 });
 

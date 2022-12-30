@@ -77,5 +77,21 @@ export default createTheme({
         },
       },
     },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          height: 22,
+        },
+        label: {
+          fontFamily: ["'Alegreya Sans'", "sans-serif"].join(","),
+          fontWeight: 700,
+          fontSize: 14,
+        },
+
+        colorSuccess: {
+          color: "#fff",
+        },
+      },
+    },
   },
 });

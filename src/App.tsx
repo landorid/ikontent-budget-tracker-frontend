@@ -1,6 +1,7 @@
 import { Divider, Grid, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
 import CashFlowForm from "./components/CashFlowForm";
+import TransactionList from "./components/TransactionList";
 import Widgets from "./components/Widgets";
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
           </Typography>
         </Grid>
 
-        <Grid item xs={12} sm={9} md={8}></Grid>
+        <Grid item xs={12} sm={7} md={8}>
+          <TransactionList />
+        </Grid>
       </Grid>
     </Container>
   );

@@ -1,26 +1,11 @@
 import { Stack } from "@mui/material";
-import { useGetTransactionsQuery } from "../services/transactions";
-import { TransactionType } from "../store/types/transactions.type";
+import { useTransactionsStat } from "../hooks/transactions-stat";
 import Widget from "./Widget";
 
 export default function Widgets() {
-  const transactions = useGetTransactionsQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      expense:
-        result.data
-          ?.filter(
-            (transaction) => transaction.type === TransactionType.Expense
-          )
-          .reduce((sum, transaction) => sum + transaction.amount, 0) || 0,
-      income:
-        result.data
-          ?.filter((transaction) => transaction.type === TransactionType.Income)
-          .reduce((sum, transaction) => sum + transaction.amount, 0) || 0,
-    }),
-  });
+  const transactions = useTransactionsStat();
 
-  if (transactions.isLoading) {
+  if (transactions.isLoading || transactions.isUninitialized) {
     return (
       <Stack
         direction={{ xs: "column", sm: "row" }}

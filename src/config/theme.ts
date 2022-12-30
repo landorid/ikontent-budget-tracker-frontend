@@ -33,6 +33,13 @@ export default createTheme({
         fontSize: "3rem",
       },
     },
+    h2: {
+      fontFamily: headingFonts,
+      fontSize: "2rem",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "2rem",
+      },
+    },
     subtitle1: {
       fontFamily: headingFonts,
       fontSize: "1.5rem",
@@ -45,6 +52,28 @@ export default createTheme({
       defaultProps: {
         variantMapping: {
           subtitle1: "p",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily: ["'Alegreya Sans'", "sans-serif"].join(","),
+          color: "#373A3C",
+          fontWeight: 700,
+          marginBottom: 8,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: ["'Alegreya Sans'", "sans-serif"].join(","),
+          fontWeight: 900,
+          fontSize: 18,
+          paddingLeft: 14,
+          paddingRight: 14,
+          color: "#fff",
         },
       },
     },

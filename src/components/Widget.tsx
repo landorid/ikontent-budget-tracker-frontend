@@ -1,4 +1,5 @@
 import { Box, Skeleton, Typography } from "@mui/material";
+import { formatCurrency } from "../utils";
 
 interface WidgetProps {
   title: string;
@@ -9,7 +10,6 @@ interface WidgetProps {
 
 export default function Widget(props: WidgetProps) {
   const { variant, title, amount, isLoading } = props;
-  const formattedAmount = amount.toLocaleString("hu-HU");
 
   return (
     <Box
@@ -34,7 +34,7 @@ export default function Widget(props: WidgetProps) {
           />
         ) : (
           <Typography color="white" variant="subtitle1">
-            {formattedAmount} HUF
+            {formatCurrency(amount)}
           </Typography>
         )}
       </div>
